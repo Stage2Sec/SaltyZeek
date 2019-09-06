@@ -8,8 +8,11 @@
     - source: salt://zeek/files/node.cfg
     - user: zeek
     - owner: zeek
+    - template: jinja
     - require:
       - cmd: build_zeek
+    - context:
+        interface: {{ interface }}
 
 {{ zeek_path }}/etc/networks.cfg:
   file.managed:
