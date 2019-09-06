@@ -1,0 +1,15 @@
+[Unit]
+Description=Zeek
+After=network.target
+[Service]
+ExecStartPre=-/usr/local/zeek/bin/zeekctl cleanup
+#ExecStartPre=/usr/local/zeek/bin/zeekctl check
+#ExecStartPre=/usr/local/zeek/bin/zeekctl install
+ExecStartPre=/usr/local/zeek/bin/zeekctl deploy
+ExecStart=/usr/local/zeek/bin/zeekctl start
+ExecStop=/usr/local/zeek/bin/zeekctl stop
+RestartSec=10s
+Type=oneshot
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
